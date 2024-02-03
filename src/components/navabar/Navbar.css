@@ -1,0 +1,59 @@
+body {
+  --screen-size: 390px;
+}
+
+.container {
+  z-index: 1;
+  height: 60px;
+  padding-bottom: 20px;
+  background-color: rgb(98, 142, 252);
+  color: white;
+  @media only screen and (max-width: var(--screen-size)) {
+    height: 50px;
+  }
+}
+
+.wrapper {
+  z-index: 2;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media only screen and (max-width: 390px) {
+    padding: 10px 0px;
+  }
+}
+
+.center {
+  flex: 1;
+  text-align: center;
+}
+
+.logo {
+  font-weight: bold;
+  @media only screen and (max-width: 390px) {
+    font-size: 24px;
+  }
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @media only screen and (max-width: 390px) {
+    flex: 2;
+    justify-content: center;
+  }
+}
+
+.menu-item {
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 25px;
+  @media only screen and (max-width: 390px) {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+}
