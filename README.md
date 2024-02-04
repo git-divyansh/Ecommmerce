@@ -20,13 +20,13 @@ This eCommerce application allows users to browse products, add them to the cart
 
 #### This is how the project looks
 
-![Landing Page](src\assets\1.png "Title")
+![Landing Page](https://github.com/git-divyansh/Ecommmerce/assets/98260712/c2330ac9-33a8-4ac2-aeeb-d3bc58fc348d)
 
-![Product listing](src\assets\2.png "Title")
+![Product listing](https://github.com/git-divyansh/Ecommmerce/assets/98260712/9742ebce-3677-4be0-bebd-d931920803d8)
 
-![Signle Product Page](src\assets\3.png "Title")
+![Signle Product Page](https://github.com/git-divyansh/Ecommmerce/assets/98260712/1075e184-e986-468e-a724-0b5ee72a84ad)
 
-![Cart](src\assets\4.png "Title")
+![Cart](https://github.com/git-divyansh/Ecommmerce/assets/98260712/3637d95c-198d-4aca-a9e6-4ccce11e31e1)
 
 #### Improvements:
 Some improvements that could be made to this submission include:
