@@ -18,6 +18,15 @@ This eCommerce application allows users to browse products, add them to the cart
 5. Open the application in your browser: `http://localhost:3000`
 6. Open the server on your browser: `npm run server`
 
+#### This is how the project looks
+
+![Landing Page](src\assets\1.png "Title")
+
+![Product listing](src\assets\2.png "Title")
+
+![Signle Product Page](src\assets\3.png "Title")
+
+![Cart](src\assets\4.png "Title")
 
 #### Improvements:
 Some improvements that could be made to this submission include:
