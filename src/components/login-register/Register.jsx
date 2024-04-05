@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login-register.css";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL } from "../../utils";
+import { API_URL, endpoints } from "../../utils";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -29,9 +29,41 @@ const Register = () => {
 
     const {confirmpassword, ...rest} = values;
 
+    const makeOrderList = (id) => {
+      const newOrder = {id : id, data : []}
+      fetch(`${API_URL}/${endpoints.ORDERS}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "access-control-allow-origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+        },
+        body: JSON.stringify(newOrder),
+      })
+        .then((response) => {
+          response.json();
+        })
+    }
+
+    const makeFavouriteList = (id) => {
+      const newFav = {id : id, data : []}
+      fetch(`${API_URL}/${endpoints.FAVOURITES}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "access-control-allow-origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+        },
+        body: JSON.stringify(newFav),
+      })
+        .then((response) => {
+          response.json();
+          
+        })
+    }
+
     fetch(`${API_URL}/users`, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
         "access-control-allow-origin": "*",
@@ -40,10 +72,13 @@ const Register = () => {
       body: JSON.stringify(rest),
     })
       .then((response) => {
-        response.json();
+        return response.json();
+      }).then(data =>{
+        console.log(data.id);
+        makeFavouriteList(data.id);
+        makeOrderList(data.id)
         navigate("/");
       })
-
   };
 
   return (

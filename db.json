@@ -6,8 +6,13 @@
       "password": "123"
     },
     {
-      "id": "6cea",
-      "email": "user@123",
+      "id": "1e3a",
+      "email": "qwe",
+      "password": "123"
+    },
+    {
+      "id": "cc5e",
+      "email": "qwe",
       "password": "123"
     }
   ],
@@ -137,6 +142,10 @@
           "quantity": 1
         }
       ]
+    },
+    {
+      "id": "cc5e",
+      "data": []
     }
   ],
   "favourites": [
@@ -157,6 +166,10 @@
         "4"
       ],
       "id": "d869"
+    },
+    {
+      "id": "cc5e",
+      "data": []
     }
   ]
 }
