@@ -45,6 +45,7 @@
 .title {
   font-size: 13px;
   color: gray;
+  cursor: pointer;
   /* background-color: yellow; */
 }
 

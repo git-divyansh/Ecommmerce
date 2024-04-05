@@ -2,11 +2,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const favouriteLocal = sessionStorage.getItem('favourites');
-const orderLocal = localStorage.getItem('orders');
+const orderLocal = sessionStorage.getItem('orders');
 
 const initialState = {
-  products: [],
-  favourite: favouriteLocal ? JSON.parse(favouriteLocal) : [],
+  products: favouriteLocal ? JSON.parse(favouriteLocal) : [],
+  favourite: [],
   order: orderLocal ? JSON.parse(orderLocal) : [],
 };
 
@@ -33,12 +33,12 @@ export const productSlice = createSlice({
     },
     addToCart: (state, action) => {
       state.order.push(action.payload);
-      localStorage.setItem('orders', JSON.stringify(state.favourite));
+      sessionStorage.setItem('orders', JSON.stringify(state.order));
     },
-    removeFromTheCart: (state, action) => {
+    updateFromTheCart: (state, action) => {
       state.order = action.payload;
-      localStorage.setItem('orders', JSON.stringify(state.favourite));
-    },
+      sessionStorage.setItem('orders', JSON.stringify(state.order));
+    }
   },
 });
 
@@ -48,7 +48,7 @@ export const {
   setFavourite,
   removeFavourite,
   addToCart,
-  removeFromTheCart,
+  updateFromTheCart,
   setFavouriteFetch
 } = productSlice.actions;
 

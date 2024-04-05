@@ -20,10 +20,8 @@ export const userSlice = createSlice({
     },
     removeUser: (state, action) => {
       state.username = null;
-      state.isuser = null;
-      sessionStorage.removeItem('userid');
-      sessionStorage.removeItem('favourites');
-      sessionStorage.removeItem('orders');
+      state.isuser = false;
+      sessionStorage.setItem('userid', JSON.stringify(""));
     },
   },
 });

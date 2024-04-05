@@ -4,6 +4,11 @@
       "id": "d869",
       "email": "test",
       "password": "123"
+    },
+    {
+      "id": "6cea",
+      "email": "user@123",
+      "password": "123"
     }
   ],
   "products": [
@@ -106,119 +111,52 @@
   ],
   "orders": [
     {
-      "0": {
-        "id": "5",
-        "title": "Max Men's Slim Polo",
-        "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
-        "image": "https://i.pinimg.com/564x/5a/cc/7f/5acc7f5af23bee76168f0f1fd24c75b4.jpg",
-        "amount": "400",
-        "rating": "4.0"
-      },
-      "1": {
-        "id": "4",
-        "title": "Jockey - Men's Regular Fit Round Neck Half Sleeved T-Shirt",
-        "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
-        "image": "https://i.pinimg.com/564x/26/ee/90/26ee903549b8b69635152f5db58264b2.jpg",
-        "amount": "350",
-        "rating": "4.0"
-      },
-      "id": "dfec",
-      "userid": "d869"
+      "id": "d869",
+      "data": [
+        {
+          "id": "3",
+          "title": "U.S. POLO ASSN - Men's Solid Regular Fit Cotton Polo",
+          "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
+          "image": "https://i.pinimg.com/564x/55/82/bc/5582bc23ad7619f10f09d10141e7a6b9.jpg",
+          "amount": "400",
+          "rating": "4.0",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "123",
+      "data": [
+        {
+          "id": "3",
+          "title": "U.S. POLO ASSN - Men's Solid Regular Fit Cotton Polo",
+          "description": "What does it feel like to witness climate change playing out in real-time? #notcool. Sound the alarm with our Women's Climate Change T-shirt, printed on organic cotton in our Carbon Neutral factory. Plus, when it's worn out you can send it back to us to be remade into something new. That's what real sustainability means to us.",
+          "image": "https://i.pinimg.com/564x/55/82/bc/5582bc23ad7619f10f09d10141e7a6b9.jpg",
+          "amount": "400",
+          "rating": "4.0",
+          "quantity": 1
+        }
+      ]
     }
   ],
   "favourites": [
     {
-      "id": "f910",
+      "id": "321",
       "data": [
-        [
-          "3",
-          "5",
-          "9"
-        ],
-        [
-          "3",
-          "5",
-          "9"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ]
-      ],
-      "userid": "d869"
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
     },
     {
-      "id": "8f57",
       "data": [
-        [
-          "3",
-          "5",
-          "9"
-        ],
-        [
-          "3",
-          "5",
-          "9"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ]
+        "3",
+        "6",
+        "4"
       ],
-      "userid": "d869"
-    },
-    {
-      "id": "5c3e",
-      "data": [
-        [
-          "3",
-          "5",
-          "9"
-        ],
-        [
-          "3",
-          "5",
-          "9"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ],
-        [
-          "4",
-          "2",
-          "8"
-        ]
-      ],
-      "userid": "d869"
+      "id": "d869"
     }
   ]
 }

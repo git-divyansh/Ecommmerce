@@ -1,27 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { MdAdd } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 import tick_symbol from "../../assets/tick-symbol.png";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromTheCart } from "../../slice/productSlice";
+import { updateFromTheCart } from "../../slice/productSlice";
 import "./Orders.css";
 import { API_URL, delivery, discount, endpoints } from "../../utils";
 
 const Orders = () => {
+  const dispatch = useDispatch();
+
   // To show the delivered modal
   const [delivered, setDilivered] = useState(false);
   const disPatch = useDispatch();
   const order = useSelector((state) => state.products.order);
-  const { id } = useSelector((state) => state.user);
+  const { id, isuser } = useSelector((state) => state.user);
 
-  let newOrder = [];
-  order.map((item) => {
-    const newItem = { ...item, quantity: 1 };
-    newOrder.push(newItem);
-  });
+  const [currentOrder, setCurrentOrder] = useState([]);
+  useLayoutEffect(() => {
+    if(!isuser)
+      return;
+    const setOrder = async () => {
+      try {
+        // The URL and the names of the endpoints are decribed in another utils.js
+        const response = await fetch(`${API_URL}/${endpoints.ORDERS}/${id}`);
+        const res = await response.json();
+        dispatch(updateFromTheCart(res.data));
+      } catch (error) {
+        console.log(console.error());
+      }
+    }
 
-  const [currentOrder, setCurrentOrder] = useState(newOrder);
+    setOrder();
+    let newOrder = [];
+    order.map((item) => {
+      const newItem = { ...item, quantity: 1 };
+      newOrder.push(newItem);
+    }); 
+    setCurrentOrder(newOrder);
+  }, [])
+
 
   // For handling the qunatity counter for every order in the cart
   const handleCounter = (id, flag) => {
@@ -47,29 +66,26 @@ const Orders = () => {
     setCurrentOrder((prev) => {
       const newObj = prev;
       const newOrder = newObj.filter((item) => item.id !== id);
-      disPatch(removeFromTheCart(newOrder));
+      disPatch(updateFromTheCart(newOrder));
       return newOrder;
     });
   };
 
-  console.log(currentOrder);
-
   // Change the flag
   const handleClickCheckout = () => {
     if (order.length) {
-      const newOrder = { ...order, userid: id };
-      fetch(`${API_URL}/${endpoints.ORDERS}`, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-          "access-control-allow-origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-        },
-        body: JSON.stringify(newOrder),
-      }).then((response) => {
-        response.json();
-      });
+      const newoder = {data : currentOrder, id : id};
+        fetch(`${API_URL}/${endpoints.ORDERS}/${id}`, {
+          method: "PUT",
+          mode : "cors",
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newoder),
+        }).then((response) => {
+          console.log(response.json());
+        });
     }
     setDilivered(!delivered);
   };
@@ -89,7 +105,7 @@ const Orders = () => {
           <p>
             <img
               src={tick_symbol}
-              style={{ height: "10rem", width: "10rem" }}
+              style={{ height: "10rem", width: "10rem" }} 
             />
           </p>
           <form method="dialog" className="form-in-modal">
@@ -107,9 +123,6 @@ const Orders = () => {
           <div className="cart-info">
             <div className="cart-product">
               {currentOrder.map((item, id) => {
-                // const totalPrice = currentOrder.reduce((accumulator, currentValue) => accumulator + currentValue.quantity * currentValue.amount, 0);
-                // const totalDiscount = discount * currentOrder.length;
-                // const totalDelivery = delivery * currentOrder.length;
                 return (
                   <div key={id} className="cart-product-detail">
                     <img src={item.image} alt="" />

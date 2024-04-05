@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { API_URL, endpoints } from "../../utils";
 import { useSelector, useDispatch } from "react-redux";
 import { FaHeart } from "react-icons/fa";
@@ -12,7 +12,7 @@ import {
   setFavouriteFetch,
 } from "../../slice/productSlice";
 import "./Products.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const navigate = useNavigate();
@@ -23,6 +23,8 @@ const Products = () => {
 
   // Fecthing the data in this block
   useLayoutEffect(() => {
+    if(!isuser)
+      return;
     const productsFecting = async () => {
       try {
         // The URL and the names of the endpoints are decribed in another utils.js
@@ -37,16 +39,9 @@ const Products = () => {
     const favFecting = async () => {
       try {
         // The URL and the names of the endpoints are decribed in another utils.js
-        const response = await fetch(`${API_URL}/${endpoints.FAVOURITES}`);
+        const response = await fetch(`${API_URL}/${endpoints.FAVOURITES}/${id}`);
         const res = await response.json();
-
-        let arr = [];
-        res.map((item) => {
-          if (item.userid == id && item.data) {
-            arr.push(item.data);
-          }
-        });
-        if (arr.length > 0) dispatch(setFavouriteFetch(arr[arr.length - 1]));
+        dispatch(setFavouriteFetch(res.data));
       } catch (error) {
         console.log(console.error());
       }
@@ -56,13 +51,34 @@ const Products = () => {
     productsFecting();
   }, []);
 
+  useEffect(() => {
+    if(!isuser)
+      return;
+    const uploadFetch = () => {
+        const newFav = {data : favourite, id : id};
+        fetch(`${API_URL}/${endpoints.FAVOURITES}/${id}`, {
+          method: "PUT",
+          mode : "cors",
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newFav),
+        }).then((response) => {
+          console.log(response.json());
+        });
+    };
+    uploadFetch();
+  }, [favourite])
+
+
   // This function will track whether the item should be included the favourites or not
   const changeConfig = (id) => {
     if (favourite.includes(id)) {
       dispatch(removeFavourite(id));
     } else {
       dispatch(setFavourite(id));
-    }
+    }  
   };
 
   const handleAddtoCart = (id) => {
@@ -96,9 +112,9 @@ const Products = () => {
             <div className="item-card-wrapper">
               <img src={item.image} alt="" />
               <div className="product-details">
-                <Link to={`/product/${item.id}`} className="title">
+                <a className="title" onClick={() => {navigate(`/product/${item.id}`)}}>
                   {item.title}
-                </Link>
+                </a>
                 <p className="price">&#8377;{item.amount}</p>
                 <span className="rating">{item.rating}</span>
               </div>
